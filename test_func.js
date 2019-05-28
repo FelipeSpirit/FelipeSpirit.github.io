@@ -2,7 +2,7 @@ function calculateEvacuation(diameter, holeDiameter, height) {
 	var time=Math.pow(((diameter / 100) / (holeDiameter / 100)), 2) * Math.sqrt(2 * (height / 100) / 9.8);
 	document.getElementById("demo").innerHTML=time;
 	do{
-		window.setTimeout(document.getElementById("demo").innerHTML=time,1);
+		window.setTimeout(document.getElementById("demo").innerHTML=time,1000);
 		time-=1;
 	}while(time>0);
 	
