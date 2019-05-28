@@ -7,7 +7,6 @@ function calculateEvacuation(diameter, holeDiameter, height) {
 	}
 }
 
-function sleep(seconds) {
-  var e = new Date().getTime() + (seconds * 1000);
-  while (new Date().getTime() <= e) {}
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
