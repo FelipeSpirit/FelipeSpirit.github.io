@@ -3,7 +3,3 @@ function calculateEvacuation(diameter, holeDiameter, height) {
 				* Math.sqrt(2 * (height / 100) / 9.8);
 		
 }
-
-function myFunction() {
-    document.getElementById("demo").innerHTML="Paragraph changed.";
-}
