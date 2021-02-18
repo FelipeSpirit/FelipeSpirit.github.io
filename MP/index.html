@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Mario Party</title>
+    <style type="text/css">
+    	.card{
+    		margin-bottom: 15px;
+    	}
+    </style>
+  </head>
+  <body>
+  	<div class="container">
+  		<h1 class="text-center">Mario Party</h1>
+  		<div class="row">
+  			<div class="col-md-6 col-lg-4 offset-lg-2">
+  				<div class="card">
+  					<div class="card-header">Primer lugar</div>
+  					<div class="card-body">
+  						<canvas id="chart1" width="400" height="400"></canvas>
+  					</div>
+  				</div>
+  			</div>
+
+  			<div class="col-md-6 col-lg-4">
+  				<div class="card">
+  					<div class="card-header">Segundo lugar</div>
+  					<div class="card-body">
+  						<canvas id="chart2" width="400" height="400"></canvas>
+  					</div>
+  				</div>
+  			</div>
+
+  			<div class="col-md-6 col-lg-4 offset-lg-2">
+  				<div class="card">
+  					<div class="card-header">Tercer lugar</div>
+  					<div class="card-body">
+  						<canvas id="chart3" width="400" height="400"></canvas>
+  					</div>
+  				</div>
+  			</div>
+
+  			<div class="col-md-6 col-lg-4">
+  				<div class="card">
+  					<div class="card-header">Cuarto lugar</div>
+  					<div class="card-body">
+  						<canvas id="chart4" width="400" height="400"></canvas>
+  					</div>
+  				</div>
+  			</div>
+
+  			<div class="col-12">
+  				<div class="card">
+  					<div class="card-body">
+  						<div class="table-responsive">
+  							<table class="table table-bordered">
+  								<thead>
+  									<tr>
+  										<th rowspan="2" class="text-center">Fecha</th>
+  										<th colspan="4" class="text-center">Lugares</th>
+  									</tr>
+  									<tr>
+  										<th class="text-center">1</th>
+  										<th class="text-center">2</th>
+  										<th class="text-center">3</th>
+  										<th class="text-center">4</th>
+  									</tr>
+  								</thead>
+
+  								<tbody id="table-data">
+  								</tbody>
+  							</table>
+  						</div>
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="data.json.js"></script>
+    <script type="text/javascript">
+    	const tableData = document.getElementById('table-data');
+
+    	plays.forEach(p=>{
+    		firstPlaces.find(f=> f.u_id == p.first).times++;
+    		secondPlaces.find(f=> f.u_id == p.second).times++;
+    		thirdPlaces.find(f=> f.u_id == p.third).times++;
+    		fourthPlaces.find(f=> f.u_id == p.fourth).times++;
+    		createDataRow(p)
+    	});
+
+    	createChart('chart1', 'Primer', firstPlaces);
+    	createChart('chart2', 'Segundo', secondPlaces);
+    	createChart('chart3', 'Tercer', thirdPlaces);
+    	createChart('chart4', 'Cuarto', fourthPlaces);
+
+    	function createChart(canvas, place, places){
+    		new Chart(document.getElementById(canvas).getContext('2d'), {
+			    type: 'pie',
+			    data: {
+			    	datasets: [{
+						data: toDataset(places),
+						backgroundColor: colors,
+						label: place + ' lugar'
+					}],
+					labels: toNames()
+			    },
+			    options: {
+			    	responsive: true
+				}
+			});
+    	}
+
+    	function createDataRow(play){
+    		const d = play.date;
+			const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+			const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+			const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+
+    		let row = document.createElement('tr');
+    		let date = document.createElement('td');
+    		date.className = "text-center"
+    		date.innerHTML = `${da}/${mo}/${ye}`;
+
+    		let first = document.createElement('td');
+    		first.className = "text-center"
+    		first.innerHTML = users.find(u=>u.id == play.first).name;
+
+    		let second = document.createElement('td');
+    		second.className = "text-center"
+    		second.innerHTML = users.find(u=>u.id == play.second).name;
+
+    		let third = document.createElement('td');
+    		third.className = "text-center"
+    		third.innerHTML = users.find(u=>u.id == play.third).name;
+
+    		let fourth = document.createElement('td');
+    		fourth.className = "text-center"
+    		fourth.innerHTML = users.find(u=>u.id == play.fourth).name;
+
+    		row.appendChild(date);
+    		row.appendChild(first);
+    		row.appendChild(second);
+    		row.appendChild(third);
+    		row.appendChild(fourth);
+
+    		tableData.appendChild(row);
+    	}
+
+    	
+
+
+
+
+	</script>
+  </body>
+</html>
