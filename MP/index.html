@@ -58,6 +58,7 @@
   							<table class="table table-bordered">
   								<thead>
   									<tr>
+										<th rowspan="2" class="text-center">ID</th>
   										<th rowspan="2" class="text-center">Fecha</th>
   										<th colspan="4" class="text-center">Lugares</th>
   									</tr>
@@ -84,13 +85,14 @@
     <script type="text/javascript" src="data.json.js"></script>
     <script type="text/javascript">
     	const tableData = document.getElementById('table-data');
-
+	   let i = 0;
     	plays.forEach(p=>{
     		firstPlaces.find(f=> f.u_id == p.first).times++;
     		secondPlaces.find(f=> f.u_id == p.second).times++;
     		thirdPlaces.find(f=> f.u_id == p.third).times++;
     		fourthPlaces.find(f=> f.u_id == p.fourth).times++;
-    		createDataRow(p)
+		i++;
+    		createDataRow(i, p)
     	});
 
     	createChart('chart1', 'Primer', firstPlaces);
@@ -115,13 +117,16 @@
 			});
     	}
 
-    	function createDataRow(play){
+    	function createDataRow(i, play){
     		const d = play.date;
 			const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
 			const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
 			const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
 
     		let row = document.createElement('tr');
+		let pp = document.createElement('td');
+		pp.className = "text-center";
+		pp.innerHTML = i;
     		let date = document.createElement('td');
     		date.className = "text-center"
     		date.innerHTML = `${da}/${mo}/${ye}`;
