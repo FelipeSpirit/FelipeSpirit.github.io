@@ -87,7 +87,7 @@ const plays = [
 		date:new Date('2021-02-19'),
 		first: 3,
 		second: 2,
-		third: 3,
+		third: 1,
 		fourth: 4
 	}
 ];
