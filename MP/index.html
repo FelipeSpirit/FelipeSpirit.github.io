@@ -12,8 +12,25 @@
     </style>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Mario Party</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Gráficos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="prob">Probabilidades</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   	<div class="container">
-  		<h1 class="text-center">Mario Party</h1>
   		<div class="row">
   			<div class="col-md-6 col-lg-4 offset-lg-2">
   				<div class="card">
@@ -70,8 +87,7 @@
   									</tr>
   								</thead>
 
-  								<tbody id="table-data">
-  								</tbody>
+  								<tbody id="table-data"></tbody>
   							</table>
   						</div>
   					</div>
@@ -79,88 +95,11 @@
   			</div>
   		</div>
   	</div>
-  
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script type="text/javascript" src="data.json.js"></script>
-    <script type="text/javascript">
-    	const tableData = document.getElementById('table-data');
-	   let i = 0;
-    	plays.forEach(p=>{
-    		firstPlaces.find(f=> f.u_id == p.first).times++;
-    		secondPlaces.find(f=> f.u_id == p.second).times++;
-    		thirdPlaces.find(f=> f.u_id == p.third).times++;
-    		fourthPlaces.find(f=> f.u_id == p.fourth).times++;
-		i++;
-    		createDataRow(i, p)
-    	});
-
-    	createChart('chart1', 'Primer', firstPlaces);
-    	createChart('chart2', 'Segundo', secondPlaces);
-    	createChart('chart3', 'Tercer', thirdPlaces);
-    	createChart('chart4', 'Cuarto', fourthPlaces);
-
-    	function createChart(canvas, place, places){
-    		new Chart(document.getElementById(canvas).getContext('2d'), {
-			    type: 'pie',
-			    data: {
-			    	datasets: [{
-						data: toDataset(places),
-						backgroundColor: colors,
-						label: place + ' lugar'
-					}],
-					labels: toNames()
-			    },
-			    options: {
-			    	responsive: true
-				}
-			});
-    	}
-
-    	function createDataRow(i, play){
-    		const d = play.date;
-			const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-			const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
-			const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-
-    		let row = document.createElement('tr');
-		let pp = document.createElement('td');
-		pp.className = "text-center";
-		pp.innerHTML = i;
-    		let date = document.createElement('td');
-    		date.className = "text-center"
-    		date.innerHTML = `${da}/${mo}/${ye}`;
-
-    		let first = document.createElement('td');
-    		first.className = "text-center"
-    		first.innerHTML = users.find(u=>u.id == play.first).name;
-
-    		let second = document.createElement('td');
-    		second.className = "text-center"
-    		second.innerHTML = users.find(u=>u.id == play.second).name;
-
-    		let third = document.createElement('td');
-    		third.className = "text-center"
-    		third.innerHTML = users.find(u=>u.id == play.third).name;
-
-    		let fourth = document.createElement('td');
-    		fourth.className = "text-center"
-    		fourth.innerHTML = users.find(u=>u.id == play.fourth).name;
-
-    		row.appendChild(date);
-    		row.appendChild(first);
-    		row.appendChild(second);
-    		row.appendChild(third);
-    		row.appendChild(fourth);
-
-    		tableData.appendChild(row);
-    	}
-
-    	
-
-
-
-
-	</script>
+    <script type="text/javascript" src="data.graph.js"></script>
   </body>
 </html>

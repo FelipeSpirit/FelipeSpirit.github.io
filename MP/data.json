@@ -1,0 +1,95 @@
+{
+	"users":[
+		{"id":1, "name": "Samheer"},
+		{"id":2, "name": "Caulimón"},
+		{"id":3, "name": "Spidey"},
+		{"id":4, "name": "Spirit"}
+	],
+	"plays":[
+		{
+			"date":"25/10/2020",
+			"first": 3,
+			"second": 2,
+			"third": 1,
+			"fourth": 4
+		},
+		{
+			"date":"30/10/2020",
+			"first": 1,
+			"second": 2,
+			"third": 3,
+			"fourth": 4
+		},
+		{
+			"date":"31/10/2020",
+			"first": 4,
+			"second": 2,
+			"third": 1,
+			"fourth": 3
+		},
+		{
+			"date":"11/12/2020",
+			"first": 3,
+			"second": 2,
+			"third": 1,
+			"fourth": 3
+		},
+		{
+			"date":"21/12/2020",
+			"first": 1,
+			"second": 2,
+			"third": 3,
+			"fourth": 4
+		},
+		{
+			"date":"29/12/2020",
+			"first": 2,
+			"second": 4,
+			"third": 1,
+			"fourth": 3
+		},
+		{
+			"date":"16/01/2021",
+			"first": 1,
+			"second": 2,
+			"third": 3,
+			"fourth": 4
+		},
+		{
+			"date":"25/01/2021",
+			"first": 1,
+			"second": 2,
+			"third": 4,
+			"fourth": 3
+		},
+		{
+			"date":"30/01/2021",
+			"first": 1,
+			"second": 3,
+			"third": 4,
+			"fourth": 2
+		},
+		{
+			"date":"07/02/2021",
+			"first": 4,
+			"second": 2,
+			"third": 1,
+			"fourth": 3
+		},
+		{
+			"date":"17/02/2021",
+			"first": 1,
+			"second": 2,
+			"third": 4,
+			"fourth": 3
+		},
+		{
+			"date":"19/02/2021",
+			"first": 3,
+			"second": 2,
+			"third": 1,
+			"fourth": 4
+		}
+	],
+	"colors":["#FAE632","#D66F1E","#2AD63E","#3E61D6"]
+}
