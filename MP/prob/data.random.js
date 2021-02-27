@@ -30,6 +30,7 @@ readData('../data.json').then(data=>{
 	});
 
 	thirdRandom.push("Caulimón")
+	secondRandom.push("Samheer")
 	fourthRandom.push("Samheer")
 })
 
