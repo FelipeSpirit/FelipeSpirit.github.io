@@ -36,6 +36,7 @@ async function randomize(){
 	let v = 10;
 	let s = 2000;
 	let fsize = 1;
+	el1.innerHTML = el2.innerHTML = el3.innerHTML =el4.innerHTML = "?"
 	
 	do{
 		await sleep(s);
