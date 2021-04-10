@@ -42,6 +42,7 @@ async function randomize(){
 		fth = el4.innerHTML = getRandomName(fourthRandom)
 		el4.style.fontSize = fsize + "rem";
 		fsize+=.4;
+		v--;
 		s /= 1.4;
 	}while(v > 0);
 	
@@ -77,7 +78,6 @@ async function randomize(){
 		fst = el1.innerHTML = getRandomName(firstRandom)
 		el1.style.fontSize = fsize + "rem";
 		fsize+=.4;
-		v--;
 		s /= 1.4;
 	}while(fth == fst || snd == fst || trd == fst);
 
