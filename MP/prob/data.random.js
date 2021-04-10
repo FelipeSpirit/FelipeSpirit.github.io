@@ -36,30 +36,16 @@ async function randomize(){
 	let v = 10;
 	let s = 2000;
 	let fsize = 1;
-
+	
 	do{
 		await sleep(s);
-		fst = el1.innerHTML = getRandomName(firstRandom)
-		el1.style.fontSize = fsize + "rem";
+		fth = el4.innerHTML = getRandomName(fourthRandom)
+		el4.style.fontSize = fsize + "rem";
 		fsize+=.4;
-		v--;
 		s /= 1.4;
 	}while(v > 0);
+	
 	let maxsize = fsize;
-	console.log(maxsize)
-
-	fsize = 1;
-	do{
-		await sleep(s);
-		snd = el2.innerHTML = getRandomName(secondRandom)
-		el2.style.fontSize = fsize + "rem";
-		fsize+=.4;
-		s /= 1.4;
-	}while(fst == snd);
-	console.log(maxsize, fsize)
-	if(maxsize > fsize)
-		el2.style.fontSize = maxsize + "rem";
-	s= 2000;
 	fsize = 1;
 	do{
 		await sleep(s);
@@ -67,7 +53,20 @@ async function randomize(){
 		el3.style.fontSize = fsize + "rem";
 		fsize+=.4;
 		s /= 1.4;
-	}while(fst == trd || snd == trd);
+	}while(fst == snd);
+	
+	console.log(maxsize, fsize)
+	if(maxsize > fsize)
+		el2.style.fontSize = maxsize + "rem";
+	s= 2000;
+	fsize = 1;
+	do{
+		await sleep(s);
+		snd = el2.innerHTML = getRandomName(secondRandom)
+		el2.style.fontSize = fsize + "rem";
+		fsize+=.4;
+		s /= 1.4;
+	}while(fth == snd || snd == trd);
 
 	if(maxsize > fsize)
 		el3.style.fontSize = maxsize + "rem";
@@ -75,11 +74,12 @@ async function randomize(){
 	fsize = 1;
 	do{
 		await sleep(s);
-		fth = el4.innerHTML = getRandomName(fourthRandom)
-		el4.style.fontSize = fsize + "rem";
+		fst = el1.innerHTML = getRandomName(firstRandom)
+		el1.style.fontSize = fsize + "rem";
 		fsize+=.4;
+		v--;
 		s /= 1.4;
-	}while(fst == fth || snd == fth || trd == fth);
+	}while(fth == fst || snd == fst || trd == fst);
 
 	if(maxsize > fsize)
 		el4.style.fontSize = maxsize + "rem";
