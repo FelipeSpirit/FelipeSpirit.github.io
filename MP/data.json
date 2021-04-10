@@ -110,6 +110,13 @@
 			"second": 2,
 			"third": 3,
 			"fourth": 4
+		},
+		{
+			"date":"09/04/2021",
+			"first": 3,
+			"second": 2,
+			"third": 1,
+			"fourth": 4
 		}
 	],
 	"colors":["#FAE632","#D66F1E","#2AD63E","#3E61D6"]
