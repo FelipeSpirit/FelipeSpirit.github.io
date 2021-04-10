@@ -55,7 +55,7 @@ async function randomize(){
 		el3.style.fontSize = fsize + "rem";
 		fsize+=.4;
 		s /= 1.4;
-	}while(fst == snd);
+	}while(fth == trd);
 	console.log(trd)
 	if(maxsize > fsize)
 		el3.style.fontSize = maxsize + "rem";
