@@ -56,9 +56,9 @@ async function randomize(){
 		s /= 1.4;
 	}while(fst == snd);
 	
-	console.log(maxsize, fsize)
 	if(maxsize > fsize)
-		el2.style.fontSize = maxsize + "rem";
+		el3.style.fontSize = maxsize + "rem";
+	
 	s= 2000;
 	fsize = 1;
 	do{
@@ -68,9 +68,9 @@ async function randomize(){
 		fsize+=.4;
 		s /= 1.4;
 	}while(fth == snd || snd == trd);
-
+	
 	if(maxsize > fsize)
-		el3.style.fontSize = maxsize + "rem";
+		el2.style.fontSize = maxsize + "rem";
 
 	fsize = 1;
 	do{
@@ -82,7 +82,7 @@ async function randomize(){
 	}while(fth == fst || snd == fst || trd == fst);
 
 	if(maxsize > fsize)
-		el4.style.fontSize = maxsize + "rem";
+		el1.style.fontSize = maxsize + "rem";
 }
 
 function sleep(ms) {
