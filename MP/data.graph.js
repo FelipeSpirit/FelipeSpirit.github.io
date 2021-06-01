@@ -44,6 +44,8 @@ readData('data.json').then(data=>{
 		
 		if(!commonRows.find(r => r.p.first == p.first))
 			commonRows.push({count:1, p})
+		else
+			commonRows.find(r => r.p.first == p.first).count++
 	});
 	
 	console.log(commonRows)
