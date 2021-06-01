@@ -14,9 +14,6 @@ readData('../data.json').then(data=>{
 			fourthRandom.push(getUserName(data.users, p.fourth))
 		}
 	});
-
-	thirdRandom.push("Caulimón")
-	fourthRandom.push("Samheer")
 })
 
 function getUserName(users, id){
