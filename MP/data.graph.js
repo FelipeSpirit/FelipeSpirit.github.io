@@ -56,6 +56,8 @@ readData('data.json').then(data=>{
 			commonPos.id = i
 		}
 	})
+	
+	tableDataCommon.appendChild(createDataRow(0, commonRows[commonPos.id].p, data.users));
 
 	createChart('chart1', 'Primer', firstPlaces, toNames(data.users), data.colors);
 	createChart('chart2', 'Segundo', secondPlaces, toNames(data.users), data.colors);
