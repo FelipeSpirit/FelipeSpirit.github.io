@@ -48,7 +48,14 @@ readData('data.json').then(data=>{
 			commonRows[commonRows.findIndex(r => r.p.first == p.first && r.p.second == p.second && r.p.third == p.third && r.p.fourth == p.fourth)].count++
 	});
 	
-	console.log(commonRows)
+	let commonPos = { id:0, count:0 };
+	
+	commonRows.forEach((r,i) => { 
+		if(commonPos.count < r.count){
+			commonPos.count = r.count 
+			commonPos.id = i
+		}
+	})
 
 	createChart('chart1', 'Primer', firstPlaces, toNames(data.users), data.colors);
 	createChart('chart2', 'Segundo', secondPlaces, toNames(data.users), data.colors);
