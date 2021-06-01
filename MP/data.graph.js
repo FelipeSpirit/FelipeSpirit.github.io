@@ -42,7 +42,7 @@ readData('data.json').then(data=>{
 		i++;
 		tableData.appendChild(createDataRow(i, p, data.users));
 		
-		if(!commonRows.find(r => r.p.first == p.first))
+		if(!commonRows.find(r => r.p.first == p.first && r.p.second == p.second && r.p.third == p.third && r.p.fourth == p.fourth))
 			commonRows.push({count:1, p})
 		else
 			commonRows[commonRows.findIndex(r => r.p.first == p.first)].count++
