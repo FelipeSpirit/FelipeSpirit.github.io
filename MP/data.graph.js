@@ -26,8 +26,12 @@ var fourthPlaces = [
 	{u_id:4, times: 0}
 ];
 
+var commonRows = [];
+
 readData('data.json').then(data=>{
 	const tableData = document.getElementById('table-data');
+	const tableDataCommon = document.getElementById('table-data-common');
+	
 	let i = 0;
 	data.plays.forEach(p=>{
 		firstPlaces.find(f=> f.u_id == p.first).times++;
@@ -37,7 +41,12 @@ readData('data.json').then(data=>{
 
 		i++;
 		tableData.appendChild(createDataRow(i, p, data.users));
+		
+		if(!commonRows.find(r => r.p.first == p.first))
+			commonRows.push({count:1, p})
 	});
+	
+	console.log(commonRows)
 
 	createChart('chart1', 'Primer', firstPlaces, toNames(data.users), data.colors);
 	createChart('chart2', 'Segundo', secondPlaces, toNames(data.users), data.colors);
