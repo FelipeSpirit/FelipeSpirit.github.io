@@ -3,19 +3,6 @@ var secondRandom = [];
 var thirdRandom = [];
 var fourthRandom = [];
 
-readData('../data.json').then(data=>{
-	const tableData = document.getElementById('table-data');
-	let i = 0;
-	data.plays.forEach(p=>{
-		for(var i = 0; i < 10;i++){
-			firstRandom.push(getUserName(data.users, p.first))
-			secondRandom.push(getUserName(data.users, p.second))
-			thirdRandom.push(getUserName(data.users, p.third))
-			fourthRandom.push(getUserName(data.users, p.fourth))
-		}
-	});
-})
-
 function getUserName(users, id){
 	return users.find(u=>u.id == id).name;
 }
@@ -24,7 +11,27 @@ function getRandomName(rand) {
     return rand[Math.floor(Math.random() * rand.length)];
 }
 
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+
+  return color;
+}
+
 async function randomize(){
+	const data = await readData('../data.json')
+	const tableData = document.getElementById('table-data');
+	let i = 0;
+	data.plays.forEach(p=>{
+		firstRandom.push(getUserName(data.users, p.first))
+		secondRandom.push(getUserName(data.users, p.second))
+		thirdRandom.push(getUserName(data.users, p.third))
+		fourthRandom.push(getUserName(data.users, p.fourth))
+	});
+
 	let fst, snd, trd,fth;
 	let el1=document.getElementById('1-place');
 	let el2=document.getElementById('2-place');
@@ -32,57 +39,47 @@ async function randomize(){
 	let el4=document.getElementById('4-place');
 	let v = 10;
 	let s = 2000;
-	let fsize = 1;
-	el1.innerHTML = el2.innerHTML = el3.innerHTML =el4.innerHTML = "?"
+	el1.src = el2.src = el3.src =el4.src = "img/q.png"
 	
 	do{
 		await sleep(s);
-		fth = el4.innerHTML = getRandomName(fourthRandom)
-		el4.style.fontSize = fsize + "rem";
-		fsize+=.4;
+		fth = getRandomName(fourthRandom)
+		el4.src = `img/${fth}.png`
 		v--;
 		s /= 1.4;
 	}while(v > 0);
+
 	console.log(fth)
-	
-	let maxsize = fsize;
-	fsize = 1;
+	thirdRandom = thirdRandom.filter(e => e != fth)
+	secondRandom = secondRandom.filter(e => e != fth)
+	firstRandom = firstRandom.filter(e => e != fth)
+
 	do{
 		await sleep(s);
-		trd = el3.innerHTML = getRandomName(thirdRandom)
-		el3.style.fontSize = fsize + "rem";
-		fsize+=.4;
+		trd = getRandomName(thirdRandom)
+		el3.src = `img/${trd}.png`
 		s /= 1.4;
-		console.log(fth ,trd)
 	}while(fth == trd);
+
 	console.log(trd)
-	if(maxsize > fsize)
-		el3.style.fontSize = maxsize + "rem";
+	secondRandom = secondRandom.filter(e => e != trd)
+	firstRandom = firstRandom.filter(e => e != trd)
 	
-	s= 2000;
-	fsize = 1;
+	s = 2000;
+
 	do{
 		await sleep(s);
-		snd = el2.innerHTML = getRandomName(secondRandom)
-		el2.style.fontSize = fsize + "rem";
-		fsize+=.4;
+		snd = getRandomName(secondRandom)
+		el2.src = `img/${snd}.png`
 		s /= 1.4;
 	}while(fth == snd || snd == trd);
-	console.log(snd)
-	if(maxsize > fsize)
-		el2.style.fontSize = maxsize + "rem";
 
-	fsize = 1;
-	do{
-		await sleep(s);
-		fst = el1.innerHTML = getRandomName(firstRandom)
-		el1.style.fontSize = fsize + "rem";
-		fsize+=.4;
-		s /= 1.4;
-	}while(fth == fst || snd == fst || trd == fst);
+	console.log(snd)
+	firstRandom = firstRandom.filter(e => e != snd)	
+
+	fst = getRandomName(firstRandom)
+	el1.src = `img/${fst}.png`
 	console.log(fst)
-	if(maxsize > fsize)
-		el1.style.fontSize = maxsize + "rem";
 }
 
 function sleep(ms) {

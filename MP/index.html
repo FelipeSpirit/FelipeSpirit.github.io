@@ -9,12 +9,23 @@
     	.card{
     		margin-bottom: 15px;
     	}
+
+      @font-face { 
+        font-family: Mario Party Hudson; 
+        src: url('fonts/mpfont.ttf'); 
+      } 
+
+      body{
+        font-family: 'Mario Party Hudson';
+      }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mario Party</a>
+        <a class="navbar-brand" href="../">
+          <img src="prob/img/mplogo.png" style="width: 150px;">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,6 +43,9 @@
     </nav>
   	<div class="container">
   		<div class="row">
+        <div class="col-md-12 text-center mb-4">
+          <img src="prob/img/mplogo.png">
+        </div>
   			<div class="col-md-6 col-lg-4 offset-lg-2">
   				<div class="card">
   					<div class="card-header">Primer lugar</div>
