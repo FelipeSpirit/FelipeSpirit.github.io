@@ -22,14 +22,14 @@ function getRandomColor() {
 }
 
 async function randomize(){
-	const data = await readData('../data.json')
+	const data = await readData('https://mario-panes.herokuapp.com/full-data')
 	const tableData = document.getElementById('table-data');
 	let i = 0;
 	data.plays.forEach(p=>{
-		firstRandom.push(getUserName(data.users, p.first))
-		secondRandom.push(getUserName(data.users, p.second))
-		thirdRandom.push(getUserName(data.users, p.third))
-		fourthRandom.push(getUserName(data.users, p.fourth))
+		firstRandom.push(getUserName(data.players, p.first))
+		secondRandom.push(getUserName(data.players, p.second))
+		thirdRandom.push(getUserName(data.players, p.third))
+		fourthRandom.push(getUserName(data.players, p.fourth))
 	});
 
 	let fst, snd, trd,fth;

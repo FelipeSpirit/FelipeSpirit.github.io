@@ -28,11 +28,11 @@ var fourthPlaces = [
 
 var commonRows = [];
 
-readData('data.json').then(data=>{
+readData('https://mario-panes.herokuapp.com/full-data').then(data=>{
 	const tableData = document.getElementById('table-data');
 	const tableDataCommon = document.getElementById('table-data-common');
-	
 	let i = 0;
+
 	data.plays.forEach(p=>{
 		firstPlaces.find(f=> f.u_id == p.first).times++;
 		secondPlaces.find(f=> f.u_id == p.second).times++;
@@ -40,14 +40,14 @@ readData('data.json').then(data=>{
 		fourthPlaces.find(f=> f.u_id == p.fourth).times++;
 
 		i++;
-		tableData.appendChild(createDataRow(i, p, data.users));
+		tableData.appendChild(createDataRow(i, p, data.players));
 		
 		if(!commonRows.find(r => r.p.first == p.first && r.p.second == p.second && r.p.third == p.third && r.p.fourth == p.fourth))
 			commonRows.push({count:1, p})
 		else
 			commonRows[commonRows.findIndex(r => r.p.first == p.first && r.p.second == p.second && r.p.third == p.third && r.p.fourth == p.fourth)].count++
 	});
-	
+
 	let commonPos = { id:0, count:0 };
 	
 	commonRows.forEach((r,i) => { 
@@ -56,13 +56,13 @@ readData('data.json').then(data=>{
 			commonPos.id = i
 		}
 	})
-	
-	tableDataCommon.appendChild(createDataRow(0, commonRows[commonPos.id].p, data.users));
 
-	createChart('chart1', 'Primer', firstPlaces, toNames(data.users), data.colors);
-	createChart('chart2', 'Segundo', secondPlaces, toNames(data.users), data.colors);
-	createChart('chart3', 'Tercer', thirdPlaces, toNames(data.users), data.colors);
-	createChart('chart4', 'Cuarto', fourthPlaces, toNames(data.users), data.colors);
+	tableDataCommon.appendChild(createDataRow(0, commonRows[commonPos.id].p, data.players));
+
+	createChart('chart1', 'Primer', firstPlaces, toNames(data.players), toColors(data.players));
+	createChart('chart2', 'Segundo', secondPlaces, toNames(data.players), toColors(data.players));
+	createChart('chart3', 'Tercer', thirdPlaces, toNames(data.players), toColors(data.players));
+	createChart('chart4', 'Cuarto', fourthPlaces, toNames(data.players), toColors(data.players));
 })
 
 function createChart(canvas, place, places, users, colors){
@@ -112,6 +112,7 @@ function createDataRow(i, play, users){
 	row.appendChild(second);
 	row.appendChild(third);
 	row.appendChild(fourth);
+
 	return row;
 }
 
@@ -130,5 +131,14 @@ function toNames(users){
 		users[1].name,
 		users[2].name,
 		users[3].name
+	];
+}
+
+function toColors(users){
+	return [
+		users[0].color,
+		users[1].color,
+		users[2].color,
+		users[3].color
 	];
 }
